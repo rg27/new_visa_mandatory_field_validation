@@ -12,6 +12,7 @@ function render(missing) {
     const list = document.getElementById("field-list");
     const empty = document.getElementById("empty-state");
     document.getElementById("pending-count").textContent = missing.length;
+    document.getElementById("pending-label").textContent = missing.length === 1 ? "field pending" : "fields pending";
 
     if (!missing.length) {
         list.innerHTML = "";
