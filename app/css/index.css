@@ -21,3 +21,15 @@ body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: t
   70%  { box-shadow: 0 0 0 8px rgba(220,38,38,0); }
   100% { box-shadow: 0 0 0 0 rgba(220,38,38,0); }
 }
+
+.toggle-btn { background: transparent; border: none; cursor: pointer; font-size: 14px; color: #7f1d1d; padding: 6px; transition: transform .2s; }
+.widget-header { cursor: pointer; }
+
+/* Collapsed state: only the header pill shows */
+body.collapsed .field-list,
+body.collapsed .empty-state { display: none !important; }
+body.collapsed .widget-header { border-bottom: none; }
+body.collapsed .widget-card { height: 100%; }
+
+/* Chevron points down when expanded, up when collapsed */
+body:not(.collapsed) .toggle-btn { transform: rotate(180deg); }

@@ -1,8 +1,29 @@
+const SIZES = {
+    collapsed: { width: "250", height: "64" },
+    expanded:  { width: "340", height: "400" }
+};
+let expanded = false;
+let firstLoad = true;
+
+function setExpanded(value) {
+    expanded = value;
+    document.body.classList.toggle("collapsed", !value);
+    try {
+        ZOHO.CRM.UI.Resize(value ? SIZES.expanded : SIZES.collapsed);
+    } catch (e) { console.warn("Resize failed", e); }
+}
+
+document.getElementById("widget-header").addEventListener("click", () => setExpanded(!expanded));
+
 ZOHO.embeddedApp.on("PageLoad", (entity) => {
     console.log("[PageLoad] payload:", entity);
     let missing = null;
     if (entity && Array.isArray(entity.missing)) missing = entity.missing;
     else if (entity && entity.data && Array.isArray(entity.data.missing)) missing = entity.data.missing;
+
+    // Start collapsed on first load only; if the team already expanded it,
+    // keep it open when the data refreshes
+    if (firstLoad) { setExpanded(false); firstLoad = false; }
 
     render(missing || []);
 });

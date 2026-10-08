@@ -8,11 +8,12 @@
 </head>
 <body>
   <div class="widget-card">
-    <div class="widget-header">
-    <div class="pending-pill">
-      <span id="pending-count" class="pending-badge">--</span>
-      <span id="pending-label" class="pending-text">fields pending</span>
-    </div>
+    <div class="widget-header" id="widget-header">
+      <div class="pending-pill">
+        <span id="pending-count" class="pending-badge">--</span>
+        <span id="pending-label" class="pending-text">fields pending</span>
+      </div>
+      <button id="toggle-btn" class="toggle-btn" title="Expand / collapse">&#9650;</button>
     </div>
     <div id="field-list" class="field-list"></div>
     <div id="empty-state" class="empty-state hidden">
